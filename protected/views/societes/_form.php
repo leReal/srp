@@ -1,0 +1,36 @@
+<?php
+/* @var $this SocietesController */
+/* @var $model Societes */
+/* @var $form CActiveForm */
+?>
+
+<div class="form">
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'societes-form',
+	'enableAjaxValidation'=>false,
+)); ?>
+
+	<p class="note">Fields with <span class="required">*</span> are required.</p>
+
+	<?php echo $form->errorSummary($model); ?>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'NOM'); ?>
+		<?php echo $form->textField($model,'NOM',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'NOM'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'DESCRIPTION'); ?>
+		<?php echo $form->textArea($model,'DESCRIPTION',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'DESCRIPTION'); ?>
+	</div>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	</div>
+
+<?php $this->endWidget(); ?>
+
+</div><!-- form -->
