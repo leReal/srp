@@ -12,7 +12,7 @@ return array(
 	// preloading 'log' component
 	'preload'=>array('log'),
         
-        'language'=>'fr_fr',
+        'language'=>'fr',
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
