@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le: Lun 26 Août 2013 à 12:14
+-- Généré le: Mer 04 Septembre 2013 à 19:33
 -- Version du serveur: 5.5.27
 -- Version de PHP: 5.4.7
 
@@ -240,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `classes` (
   `NOM` varchar(255) NOT NULL,
   `NIVEAU` varchar(255) DEFAULT NULL,
   `FRAIS_SCOLARITE` decimal(10,0) DEFAULT NULL,
-  `MOYENE` decimal(10,0) DEFAULT NULL,
+  `FRAIS_INCRIPTION` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`CLASSE_ID`),
   KEY `FK_RELATIONSHIP_7` (`ETABLISSEMENT_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
@@ -249,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `classes` (
 -- Contenu de la table `classes`
 --
 
-INSERT INTO `classes` (`CLASSE_ID`, `ETABLISSEMENT_ID`, `NOM`, `NIVEAU`, `FRAIS_SCOLARITE`, `MOYENE`) VALUES
+INSERT INTO `classes` (`CLASSE_ID`, `ETABLISSEMENT_ID`, `NOM`, `NIVEAU`, `FRAIS_SCOLARITE`, `FRAIS_INCRIPTION`) VALUES
 (1, 1, 'CM2 A', 'CM2', 60000, NULL),
 (2, 1, 'SLI B', 'SIL', 60000, NULL);
 
@@ -284,6 +284,7 @@ INSERT INTO `cours` (`COURS_ID`, `ETABLISSEMENT_ID`, `NOM`, `DESCRIPTION`) VALUE
 
 CREATE TABLE IF NOT EXISTS `eleves` (
   `ELEVE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `MATRICULE` varchar(250) NOT NULL,
   `ETABLISSEMENT_ID` int(11) NOT NULL,
   `STATUT_ID` int(11) DEFAULT NULL,
   `NOM` varchar(255) DEFAULT NULL,
@@ -305,11 +306,11 @@ CREATE TABLE IF NOT EXISTS `eleves` (
 -- Contenu de la table `eleves`
 --
 
-INSERT INTO `eleves` (`ELEVE_ID`, `ETABLISSEMENT_ID`, `STATUT_ID`, `NOM`, `PRENOM`, `DATE_NAISSANCE`, `DATE_ENREGISTREMENT`, `NOM_PRENOM_PERE`, `NOM__PRENOM_MERE`, `ADRESSE`, `TELEPHONE_PERE`, `SEXE`, `TELEPHONE_MERE`) VALUES
-(1, 1, 1, 'BANO', 'Jean', '2013-08-11', '2013-08-11', 'Père', 'Mère', 'douala', '', 'Masculin', ''),
-(2, 1, 1, 'TITO', 'Merlin', '2013-08-01', '2013-08-16', '', '', '', '', 'Masculin', ''),
-(3, 1, 1, 'Meumi', 'Blanche', '2012-06-01', '0000-00-00', '', '', '', '', 'Féminin', ''),
-(4, 1, 1, 'TOTO', 'TOTO', '2012-08-01', '2013-08-17', 'Père toto', 'mère toto', 'bafoussam Antenne télé', '237987056', 'Masculin', '');
+INSERT INTO `eleves` (`ELEVE_ID`, `MATRICULE`, `ETABLISSEMENT_ID`, `STATUT_ID`, `NOM`, `PRENOM`, `DATE_NAISSANCE`, `DATE_ENREGISTREMENT`, `NOM_PRENOM_PERE`, `NOM__PRENOM_MERE`, `ADRESSE`, `TELEPHONE_PERE`, `SEXE`, `TELEPHONE_MERE`) VALUES
+(1, '', 1, 1, 'BANO', 'Jean', '2013-08-11', '2013-08-11', 'Père', 'Mère', 'douala', '', 'Masculin', ''),
+(2, '', 1, 1, 'TITO', 'Merlin', '2013-08-01', '2013-08-16', '', '', '', '', 'Masculin', ''),
+(3, '', 1, 1, 'Meumi', 'Blanche', '2012-06-01', '0000-00-00', '', '', '', '', 'Féminin', ''),
+(4, '', 1, 1, 'TOTO', 'TOTO', '2012-08-01', '2013-08-17', 'Père toto', 'mère toto', 'bafoussam Antenne télé', '237987056', 'Masculin', '');
 
 -- --------------------------------------------------------
 
@@ -406,7 +407,15 @@ CREATE TABLE IF NOT EXISTS `evaluer` (
   KEY `FK_EVALUER4` (`COURS_ID`),
   KEY `FK_EVALUER5` (`EXAMEN_ID`),
   KEY `FK_REFERENCE_31` (`ETABLISSEMENT_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `evaluer`
+--
+
+INSERT INTO `evaluer` (`ELEVE_ID`, `ANNEEACADEMIQUE_ID`, `COURS_ID`, `EXAMEN_ID`, `ETABLISSEMENT_ID`, `DATE`, `MOYENE`, `CLASSE_ID`, `OBSERV`, `EVAL_ID`) VALUES
+(1, 1, 1, 1, 1, '2013-09-04', 12, 1, ' A B', 1),
+(2, 1, 1, 1, 1, '2013-09-04', 5, 1, 'Faible', 2);
 
 -- --------------------------------------------------------
 
