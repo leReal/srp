@@ -12,7 +12,7 @@ $this->menu=array(
 	array('label'=>'Liste des notes', 'url'=>array('index')),
 	array('label'=>'Attribuer des notes', 'url'=>array('create')),
 	array('label'=>'Consulter une note', 'url'=>array('view', 'id'=>$model->EVAL_ID)),
-	array('label'=>'Manipuler les notes', 'url'=>array('admin')),
+	array('label'=>'Gérer les notes', 'url'=>array('admin')),
 );
 ?>
 

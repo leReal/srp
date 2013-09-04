@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Liste des notes', 'url'=>array('index')),
-	array('label'=>'Manipuler les notes', 'url'=>array('admin')),
+	array('label'=>'Gérer les notes', 'url'=>array('admin')),
 );
 ?>
 

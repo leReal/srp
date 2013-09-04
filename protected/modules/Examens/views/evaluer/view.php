@@ -12,7 +12,7 @@ $this->menu=array(
 	array('label'=>'Attribuer des notes', 'url'=>array('create')),
 	array('label'=>'Modifier une note', 'url'=>array('update', 'id'=>$model->EVAL_ID)),
 	array('label'=>'Supprimer une note', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->EVAL_ID),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Gestion des notes', 'url'=>array('admin')),
+	array('label'=>'Gérer des notes', 'url'=>array('admin')),
 );
 ?>
 
