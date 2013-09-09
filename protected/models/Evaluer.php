@@ -14,6 +14,7 @@
  * @property integer $CLASSE_ID
  * @property string $OBSERV
  * @property integer $EVAL_ID
+ * @property array $TO_SAVE
  */
 class Evaluer extends CActiveRecord
 {
@@ -45,14 +46,27 @@ class Evaluer extends CActiveRecord
 		return array(
 			array('ELEVE_ID, COURS_ID, EXAMEN_ID, CLASSE_ID, MOYENE', 'required'),
 			array('ELEVE_ID, ANNEEACADEMIQUE_ID, COURS_ID, EXAMEN_ID, ETABLISSEMENT_ID, CLASSE_ID', 'numerical', 'integerOnly'=>true),
-			array('MOYENE', 'length', 'max'=>10),
+//			array('MOYENE','numerical'),
+//                        array('MOYENE', 'length', 'max'=>6),
 			array('OBSERV', 'length', 'max'=>255),
 			array('DATE', 'safe'),
-			// The following rule is used by search().
+//                        array('MOYENE','validateMoyenne', 'message'=>'La note doit être comprise entre 0 et 20'),
+			
+                        array('MOYENE','numerical',
+                                'min'=>0,
+                                'max'=>20,
+                                'tooSmall'=>'Valeur minimale de la note : 0',
+                                'tooBig'=>'Valeur maximale de la note : 20'),
+
+                        // The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('ELEVE_ID, ANNEEACADEMIQUE_ID, COURS_ID, EXAMEN_ID, ETABLISSEMENT_ID, DATE, MOYENE, CLASSE_ID, OBSERV, EVAL_ID', 'safe', 'on'=>'search'),
 		);
 	}
+        public function validateMoyenne(){
+            Yii::log('validateMoyenne validons '.$this->MOYENE);
+            return 0 > $this->MOYENE || $this->MOYENE > 20;
+        }
 
 	/**
 	 * @return array relational rules.
@@ -81,6 +95,7 @@ class Evaluer extends CActiveRecord
 			'CLASSE_ID' => 'Classe',
 			'OBSERV' => 'Observ',
 			'EVAL_ID' => 'Eval',
+                        'TO_SAVE' => 'A Enregistrer',
 		);
 	}
 
@@ -110,4 +125,5 @@ class Evaluer extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
 }
