@@ -1,7 +1,12 @@
 <?php
 
+Yii::import('application.extensions.ireport.*');
 class EvaluerController extends Controller
 {
+    // Type :  Evaluer_To_Save()
+        public $evaluerToSave ;
+
+        public $rechercheEffectueePourCreation = 0;
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -52,6 +57,22 @@ class EvaluerController extends Controller
 				'actions'=>array('admin','create_1'),
 				'users'=>array('admin'),
 			),
+                        array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','afficherPageRapport'),
+				'users'=>array('admin'),
+			),
+                        array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','reportBulletin'),
+				'users'=>array('admin'),
+			),
+                        array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','annuler_1'),
+				'users'=>array('admin'),
+			),
+                        array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','confBulletin'),
+				'users'=>array('admin'),
+			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -70,20 +91,78 @@ class EvaluerController extends Controller
 	}
         public function actionCreate_1()
 	{
-		$model=new Evaluer;
+                $value1=new Evaluer();
+                $model_de_base=new Evaluer();
+                $this->listeEltsAEnregistrer = array();
+                $this->evaluerToSave = new Evaluer_To_Save();
+                $save = true;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+//                $model_de_base = $this->listeEltsAEnregistrer[0];
+//                $model_de_base->setAttribute('ANNEEACADEMIQUE_ID', 1);
+//                $model_de_base->setAttribute('ETABLISSEMENT_ID', 1);
+//                $model_de_base->setAttribute('DATE', date("y.m.d") );
 
-//		if(isset($_POST['Evaluer']))
-//		{
-//			$model->attributes=$_POST['Evaluer'];
-//			if($model->save())
-//				$this->redirect(array('view','id'=>$model->EVAL_ID));
-//		}
-		$this->render('create_1',array(
-			'model'=>$model,
-		));
+
+                $nb_enreg = $_POST['NB_ENREG'];//count($this->listeEltsAEnregistrer);
+//                echo 'NB enreg : '.$nb_enreg;
+                for($i = 0; $i < $nb_enreg; $i++){
+                    $value1 =  new Evaluer();
+
+                    $value1->setIsNewRecord($_POST['NEW_RECORD'.$i] == 1);
+                    $value1->setAttribute('MOYENE', $_POST['MOY'.$i]);
+                    $value1->setAttribute('OBSERV', $_POST['OBS'.$i]);
+                    $value1->setAttribute('ELEVE_ID', $_POST['ELEVE_ID'.$i]);
+                    $value1->setAttribute('COURS_ID', $_POST['COURS_ID'.$i]);
+                    $value1->setAttribute('EXAMEN_ID', $_POST['EXAMEN_ID'.$i]);
+                    $value1->setAttribute('CLASSE_ID', $_POST['CLASSE_ID'.$i]);
+                    $value1->setAttribute('EVAL_ID', $i);
+
+
+                        $value1->setAttribute('ANNEEACADEMIQUE_ID', 1);
+                        $value1->setAttribute('ETABLISSEMENT_ID', 1);
+                        $value1->setAttribute('DATE', date("y.m.d") );
+                        // Dans une classe donnée, pour un examen donné et pour année académique donnée
+                        // un elève doit avoir une seule note. S'il est déja présent on le modifie
+                        $evaluer = new Evaluer();
+
+                        $attribute = array('COURS_ID' => $value1->getAttribute('COURS_ID'),
+                                        'EXAMEN_ID'=> $value1->getAttribute('EXAMEN_ID'),
+                                        'ANNEEACADEMIQUE_ID' => $value1->getAttribute('ANNEEACADEMIQUE_ID'),
+                                        'ELEVE_ID' => $value1->getAttribute('ELEVE_ID'));
+
+
+                    $result = $evaluer->findAllByAttributes($attribute);
+                   // echo 'Resultat : '.count($result).' '.$value1->MOYENE.' ELEVE- '.$value1->ELEVE_ID.' Cours : '.$value1->COURS_ID.' Examen '.$value1->EXAMEN_ID.' Classe '.$value1->CLASSE_ID;
+                   if(count($result) == 0){
+
+                       $value1->setIsNewRecord(true);
+                   }else  if(count($result) == 1){
+
+                       $value1->setIsNewRecord(false);
+                       $value1->setAttribute('EVAL_ID', $result[0]->EVAL_ID);
+
+                   }
+                   $model_de_base = $value1;
+                   if($value1->save()){
+                       $this->listeEltsAEnregistrer[$i] = $value1;
+                       $save = $save && true;
+                   }else{
+                       $save = $save && false;
+                   }
+                    $this->evaluerToSave->ajouterEvaluer($value1);
+
+		}// fin boucle for
+
+                if($save){
+                    $model_de_base->setIsNewRecord(true);
+                    $this->render('create',array(
+			'model'=>$model_de_base,
+                    ));
+                }else{
+                    $this->render('create_1',array(
+			'model'=>$this->evaluerToSave,
+                    ));
+                }
 	}
 	/**
 	 * Creates a new model.
@@ -253,6 +332,7 @@ class EvaluerController extends Controller
 
         public function actionRechercher(){
 
+                $this->evaluerToSave = new Evaluer_To_Save();
                 $model2=new Inscription();
                 $model=new Evaluer();
 
@@ -281,7 +361,7 @@ class EvaluerController extends Controller
                         $aEnregistrer = new Evaluer();//$model;
                         $aEnregistrer->setAttribute('CLASSE_ID', $model->getAttribute('CLASSE_ID'));
                         $aEnregistrer->setAttribute('COURS_ID', $model->getAttribute('COURS_ID'));
-                        $aEnregistrer->setAttribute('EXAMENS_ID', $model->getAttribute('EXAMENS_ID'));
+                        $aEnregistrer->setAttribute('EXAMEN_ID', $model->getAttribute('EXAMEN_ID'));
                         $aEnregistrer->setAttribute('ELEVE_ID', $value->getAttribute('ELEVE_ID'));
                         $aEnregistrer->setAttribute('ANNEEACADEMIQUE_ID', 1);
 
@@ -296,22 +376,54 @@ class EvaluerController extends Controller
                         $result = $modelEvalRecherche->findAllByAttributes($attrubute2);
 
                         // S'il ya un résultat lui affecter à la moyenne et l'observation
-                  
+
+                        Yii::log('Apres recherche element trouve : '.count($result));
                         if(count($result) == 1){
                            $aEnregistrer->setAttribute('MOYENE', $result[0]->getAttribute('MOYENE'));
                            $aEnregistrer->setAttribute('OBSERV', $result[0]->getAttribute('OBSERV'));
                         }
 
                         $this->listeEltsAEnregistrer[$i++] = $aEnregistrer;
+                        $this->evaluerToSave->ajouterEvaluer($aEnregistrer);
                     }
 
 //$model=$this->listeEltsAEnregistrer[0];
 
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
+                $this->rechercheEffectueePourCreation = 1;
+		$this->render('create_1',array(
+			'model'=>$this->evaluerToSave,
 		));
                  
         }
+
+   public function actionAfficherPageRapport(){
+       $model = new Evaluer();
+       $this->render('create_2',array(
+			'model'=>$model,
+		));
+   }
+   public function actionReportBulletin()
+    {
+
+        $this->render('jasper');
+    }
+     public function actionConfBulletin()
+    {
+
+        $model = new Evaluer();
+        $this->render('conf_bulletin',array(
+			'model'=>$model,
+		));
+    }
+    public function actionAnnuler_1()
+    {
+
+        $model = new Evaluer();
+        $this->render('create',array(
+			'model'=>$model,
+		));
+    }
 }
+?>

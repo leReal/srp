@@ -9,12 +9,13 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'evaluer-form',
 	'enableAjaxValidation'=>false,
-)); ?>
+));
+Yii::app()->bootstrap->register();
+?>
 
 	<p class="note">Les champs avec la marque <span class="required">*</span> sont oligatoires.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
 
 
          <table width="200" border="0">
@@ -67,68 +68,68 @@
 <?php
 
 if($model->isNewRecord){
-    echo 'Nombre d\'éléments trouvés : '.count($this->listeEltsAEnregistrer);
+    echo 'Nombre d\'éléments enregistrés : '.count($this->listeEltsAEnregistrer);
 
     $modelInscrp=new Inscription();
 
-    if(count($this->listeEltsAEnregistrer) >= 0){
-       // $model = $this->listeEltsAEnregistrer[0];
+    if(count($this->listeEltsAEnregistrer) > 0){
+        //$value = $this->listeEltsAEnregistrer[0];
+        $classe = Classes::model()->find('CLASSE_ID=:classeID', array(':classeID'=>$model->getAttribute('CLASSE_ID')));
+        $cours = Cours::model()->find('COURS_ID=:coursID', array(':coursID'=>$model->getAttribute('COURS_ID')));
+        $exam = Examens::model()->find('EXAMEN_ID=:examID', array(':examID'=>$model->getAttribute('EXAMEN_ID')));
+
+        //echo '<br><br>Classe : '.$classe->getAttribute('NOM').' -- Cours : '.$cours->getAttribute('NOM').' -- Examen : '.$exam->getAttribute('NOM');
+
+        echo '<table border="1"><tr><th>Nom de l\'élève</th><th>Moyenne</th><th>Observation</th></tr>br>';
 
         foreach ($this->listeEltsAEnregistrer as $value) {
-            //$model = $value;
-            echo '<div  class="view">';
-            echo $form->labelEx($modelInscrp,'ELEVE_ID');
-            echo CHtml::encode($value->getAttribute('ELEVE_ID'));
-            echo '<br />';
+            array(
+                'ELEVE_ID'=>$value->getAttribute('ELEVE_ID'),
+                'MOYENNE'=>$value->getAttribute('ELEVE_ID'),);
+            $eleve2 = Eleves::model()->find('ELEVE_ID=:eleveID', array(':eleveID'=>$value->getAttribute('ELEVE_ID')));
+            echo '<tr><td>';
+            echo CHtml::encode($eleve2->getAttribute('NOM'));
+            echo '</td>';
 
-            echo $form->labelEx($value,'MOYENE');
+            echo '<td>';
             echo $form->textField($value,'MOYENE');
-            echo $form->error($value,'MOYENE');
+            echo '</td>';
 
-            echo $form->labelEx($value,'OBSERV');
+            echo '<td>';
             echo $form->textField($value,'OBSERV');
-            echo $form->error($value,'OBSERV');
+            echo '</td>';
 
-            echo '<br />';
-            echo '</div>';
+            echo '</tr>';
+            
+//            echo '<div  class="view">';
+//            echo $form->labelEx($modelInscrp,'ELEVE_ID');
+//            echo CHtml::encode($eleve2->getAttribute('NOM'));
+//            echo '<br />';
+//
+//            echo $form->labelEx($value,'MOYENE');
+//            echo $form->textField($value,'MOYENE');
+//            echo $form->error($value,'MOYENE');
+//
+//            echo $form->labelEx($value,'OBSERV');
+//            echo $form->textField($value,'OBSERV');
+//            echo $form->error($value,'OBSERV');
+//
+//            echo '<br />';
+//            echo '</div>';
         }
+        echo '</table>';
   
         
       
     }else{
-        echo '<div class="view">Plus d\'un élément trouvé !</div>';
+        echo '<div class="view">Veuillez rechercher les élèves à qui attribuer les notes !</div>';
     }
-}else{ // Si on est en modification
-    echo '<div  class="view">';
-            echo $form->labelEx($model,'ELEVE_ID');
-            echo CHtml::encode($model->getAttribute('ELEVE_ID'));
-            echo '<br />';
-
-            echo $form->labelEx($model,'MOYENE');
-            echo $form->textField($model,'MOYENE');
-            echo $form->error($model,'MOYENE');
-
-            echo $form->labelEx($model,'OBSERV');
-            echo $form->textField($model,'OBSERV');
-            echo $form->error($model,'OBSERV');
-
-            echo '<br />';
-            echo '</div>';
 }
 
 ?>
     </div>
 
-	<div class="row buttons">
-		<?php //echo CHtml::submitButton($model->isNewRecord ? 'Enregistrer' : 'Save');
-                if($model->isNewRecord)
-                        echo CHtml::button('Enregistrer',
-                        array('submit' => array('evaluer/create')));
-                else
-                    echo CHtml::button('Modifier',
-                        array('submit' => array('evaluer/update' => $model->EVAL_ID)));
-                ?>
-	</div>
+
 
 <?php $this->endWidget(); ?>
 

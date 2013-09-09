@@ -2,7 +2,7 @@
 /* @var $this DefaultController */
 
 $this->breadcrumbs=array(
-	"Evaluation",
+	$this->module->id,
 );
 ?>
 <style type="text/css">
@@ -48,18 +48,8 @@ div.menu3sub
 </style>
 <h1><?php
 //echo $this->uniqueId . '/' . $this->action->id;
-echo '';
+echo 'Module de gestion des évaluations';
 ?></h1>
-<?php $this->beginWidget('zii.widgets.CPortlet' , array(
-			'title'=>'Gestion des évaluations',
-		)); ?>
-<div class="evalmenu">
-<ul>
-   <li> <?php echo CHtml::link('Gestion des examens',array('/Examens/examens')); ?></li>
-   <li> <?php echo CHtml::link('Gestion des notes des élèves',array('/Examens/evaluer')); ?></li> 
-</ul>
-</div>
-<?php $this->endWidget(); ?>
 
 <p>
 Gérer efficacement les évaluations de votre établissement.
@@ -69,5 +59,12 @@ Gérer efficacement les évaluations de votre établissement.
 </p>
 
 <p>
+    <div class="menu3">
+    <a href="index.php?r=Examens/examens">Gestion des examens</a>
+    <a href="index.php?r=Examens/evaluer">Gestion des notes des élèves</a>
+    <a href="Examens/evaluer/afficherPageRapport">Edition des rapports</a>
+    
+</div>
+<div class="menu3sub"> </div>
 
 </p>

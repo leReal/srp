@@ -20,15 +20,19 @@
 		<?php echo $form->textField($model,'NOM',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'NOM'); ?>
 	</div>
-        <div class="row">
-		<?php echo $form->labelEx($model,'ETABLISSEMENT_ID'); ?>
-		<?php echo $form->dropDownList($model,'ETABLISSEMENT_ID',CHtml::listData(Etablissements::model()->findAll(),'ETABLISSEMENT_ID', 'NOM')); ?>
-		<?php echo $form->error($model,'ETABLISSEMENT_ID'); ?>
-	</div>
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'ANNEEACADEMIQUE_ID'); ?>
-		<?php echo $form->dropDownList($model,'ANNEEACADEMIQUE_ID',CHtml::listData(Anneeacademiques::model()->findAll(),'ANNEEACADEMIQUE_ID', 'DATEDEB'));?>
-		<?php echo $form->error($model,'ANNEEACADEMIQUE_ID'); ?>
+		<?php
+                echo $form->dropDownList($model, 'ANNEEACADEMIQUE_ID',
+                    CHtml::listData(Anneeacademiques::model()->findAll(),'ANNEEACADEMIQUE_ID','LIB_ANN')
+                    );
+                //echo $form->textField($model,'ANNEEACADEMIQUE_ID');
+                ?>
+		<?php
+                //echo $form->error($model,'ANNEEACADEMIQUE_ID');
+
+                ?>
 	</div>
 
         <div class="row">
@@ -65,16 +69,17 @@
 		<?php echo $form->error($model,'DATE_DEB'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'DESCRIPTION'); ?>
-		<?php echo $form->textArea($model,'DESCRIPTION',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'DESCRIPTION'); ?>
-	</div>
-        
+	
+
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Créer' : 'Enregistrer'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+<div class="btn-toolbar">
+    <?php
+    Yii::app()->bootstrap->register();
+     ?>
+</div>
