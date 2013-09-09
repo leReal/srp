@@ -1,5 +1,5 @@
 <?php
-
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -64,6 +64,10 @@ return array(
 			'allowAutoLogin'=>true,
                         'class'=>'RWebUser',                    // Allows super users access implicitly.
       		),
+			 // BootStrap
+                'bootstrap'=>array(
+                            'class'=>'bootstrap.components.Bootstrap',
+                ),
                 'jasPHP' => array(
                                     'class' => 'JasPHP',
                     ),
@@ -87,7 +91,7 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=gestionscolaire',
+			'connectionString' => 'mysql:host=localhost;dbname=gescolaire',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
