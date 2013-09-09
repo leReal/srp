@@ -91,7 +91,7 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=gescolaire',
+			'connectionString' => 'mysql:host=localhost;dbname=gestionscolaire',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',

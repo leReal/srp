@@ -3890,3 +3890,213 @@ Stack trace:
 REQUEST_URI=/srp/index.php/eleves/admin
 HTTP_REFERER=http://localhost:85/srp/index.php/eleves/index
 ---
+2013/09/09 14:54:26 [error] [exception.CDbException] SQLSTATE[HY000] [1049] Unknown database 'gescolaire'
+2013/09/09 14:54:26 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection.' in D:\xampp\htdocs\yii\framework\db\CDbConnection.php:387
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 D:\xampp\htdocs\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 D:\xampp\htdocs\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 D:\xampp\htdocs\yii\framework\base\CApplication.php(438): CModule->getComponent('db')
+#4 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(623): CApplication->getDb()
+#5 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Utilisateurs))
+#7 D:\xampp\htdocs\srp\protected\models\Utilisateurs.php(25): CActiveRecord::model('Utilisateurs')
+#8 D:\xampp\htdocs\srp\protected\components\UserIdentity.php(23): Utilisateurs::model()
+#9 D:\xampp\htdocs\srp\protected\models\LoginForm.php(54): UserIdentity->authenticate()
+#10 D:\xampp\htdocs\yii\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#11 D:\xampp\htdocs\yii\framework\validators\CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 D:\xampp\htdocs\yii\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#13 D:\xampp\htdocs\srp\protected\controllers\SiteController.php(89): CModel->validate()
+#14 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#15 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 D:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#19 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#20 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/srp/index.php/site/login
+HTTP_REFERER=http://localhost:85/srp/index.php/site/login
+---
+2013/09/09 14:54:50 [error] [exception.CDbException] SQLSTATE[HY000] [1049] Unknown database 'gescolaire'
+2013/09/09 14:54:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection.' in D:\xampp\htdocs\yii\framework\db\CDbConnection.php:387
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 D:\xampp\htdocs\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 D:\xampp\htdocs\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 D:\xampp\htdocs\yii\framework\base\CApplication.php(438): CModule->getComponent('db')
+#4 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(623): CApplication->getDb()
+#5 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Utilisateurs))
+#7 D:\xampp\htdocs\srp\protected\models\Utilisateurs.php(25): CActiveRecord::model('Utilisateurs')
+#8 D:\xampp\htdocs\srp\protected\components\UserIdentity.php(23): Utilisateurs::model()
+#9 D:\xampp\htdocs\srp\protected\models\LoginForm.php(54): UserIdentity->authenticate()
+#10 D:\xampp\htdocs\yii\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#11 D:\xampp\htdocs\yii\framework\validators\CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 D:\xampp\htdocs\yii\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#13 D:\xampp\htdocs\srp\protected\controllers\SiteController.php(89): CModel->validate()
+#14 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#15 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 D:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#19 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#20 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/srp/index.php/site/login
+HTTP_REFERER=http://localhost:85/srp/index.php/site/login
+---
+2013/09/09 14:56:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1049] Unknown database 'gescolaire'' in D:\xampp\htdocs\yii\framework\db\CDbConnection.php:381
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 D:\xampp\htdocs\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 D:\xampp\htdocs\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 D:\xampp\htdocs\yii\framework\base\CApplication.php(438): CModule->getComponent('db')
+#4 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(623): CApplication->getDb()
+#5 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Utilisateurs))
+#7 D:\xampp\htdocs\srp\protected\models\Utilisateurs.php(25): CActiveRecord::model('Utilisateurs')
+#8 D:\xampp\htdocs\srp\protected\components\UserIdentity.php(23): Utilisateurs::model()
+#9 D:\xampp\htdocs\srp\protected\models\LoginForm.php(54): UserIdentity->authenticate()
+#10 D:\xampp\htdocs\yii\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#11 D:\xampp\htdocs\yii\framework\validators\CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 D:\xampp\htdocs\yii\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#13 D:\xampp\htdocs\srp\protected\controllers\SiteController.php(89): CModel->validate()
+#14 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#15 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 D:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#19 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#20 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/srp/index.php/site/login
+HTTP_REFERER=http://localhost:85/srp/index.php/site/login
+---
+2013/09/09 14:59:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1049] Unknown database 'gestioncolaire'' in D:\xampp\htdocs\yii\framework\db\CDbConnection.php:381
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 D:\xampp\htdocs\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 D:\xampp\htdocs\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 D:\xampp\htdocs\yii\framework\base\CApplication.php(438): CModule->getComponent('db')
+#4 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(623): CApplication->getDb()
+#5 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Utilisateurs))
+#7 D:\xampp\htdocs\srp\protected\models\Utilisateurs.php(25): CActiveRecord::model('Utilisateurs')
+#8 D:\xampp\htdocs\srp\protected\components\UserIdentity.php(23): Utilisateurs::model()
+#9 D:\xampp\htdocs\srp\protected\models\LoginForm.php(54): UserIdentity->authenticate()
+#10 D:\xampp\htdocs\yii\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#11 D:\xampp\htdocs\yii\framework\validators\CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 D:\xampp\htdocs\yii\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#13 D:\xampp\htdocs\srp\protected\controllers\SiteController.php(89): CModel->validate()
+#14 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#15 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 D:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#19 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#20 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/srp/index.php/site/login
+HTTP_REFERER=http://localhost:85/srp/index.php/site/login
+---
+2013/09/09 14:59:46 [error] [exception.CException] exception 'CException' with message 'L'alias « bootstrap.components.Bootstrap » est invalide. Vérifiez qu'il pointe vers un fichier PHP existant.' in D:\xampp\htdocs\yii\framework\YiiBase.php:316
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(196): YiiBase::import('bootstrap.compo...', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 D:\xampp\htdocs\yii\framework\base\CModule.php(103): CModule->getComponent('bootstrap')
+#3 D:\xampp\htdocs\srp\protected\modules\Examens\views\examens\_form.php(83): CModule->__get('bootstrap')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('D:\xampp\htdocs...')
+#5 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#7 D:\xampp\htdocs\srp\protected\modules\Examens\views\examens\create.php(18): CController->renderPartial('_form', Array)
+#8 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('D:\xampp\htdocs...')
+#9 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#12 D:\xampp\htdocs\srp\protected\modules\Examens\controllers\ExamensController.php(79): CController->render('create', Array)
+#13 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): ExamensController->actionCreate()
+#14 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#21 D:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#23 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Examens/examens...')
+#24 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#25 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#26 {main}
+REQUEST_URI=/srp/index.php/Examens/examens/create
+HTTP_REFERER=http://localhost:85/srp/index.php/Examens/examens
+---
+2013/09/09 15:03:15 [error] [exception.CException] exception 'CException' with message 'L'alias « bootstrap.components.Bootstrap » est invalide. Vérifiez qu'il pointe vers un fichier PHP existant.' in D:\xampp\htdocs\yii\framework\YiiBase.php:316
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(196): YiiBase::import('bootstrap.compo...', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 D:\xampp\htdocs\yii\framework\base\CModule.php(103): CModule->getComponent('bootstrap')
+#3 D:\xampp\htdocs\srp\protected\modules\Examens\views\examens\_form.php(83): CModule->__get('bootstrap')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('D:\xampp\htdocs...')
+#5 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#7 D:\xampp\htdocs\srp\protected\modules\Examens\views\examens\create.php(18): CController->renderPartial('_form', Array)
+#8 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('D:\xampp\htdocs...')
+#9 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#12 D:\xampp\htdocs\srp\protected\modules\Examens\controllers\ExamensController.php(79): CController->render('create', Array)
+#13 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): ExamensController->actionCreate()
+#14 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#21 D:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#23 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Examens/examens...')
+#24 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#25 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#26 {main}
+REQUEST_URI=/srp/index.php/Examens/examens/create
+HTTP_REFERER=http://localhost:85/srp/index.php/Examens/examens
+---
+2013/09/09 15:04:41 [error] [exception.CException] exception 'CException' with message 'L'alias « bootstrap.components.Bootstrap » est invalide. Vérifiez qu'il pointe vers un fichier PHP existant.' in D:\xampp\htdocs\yii\framework\YiiBase.php:316
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(196): YiiBase::import('bootstrap.compo...', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 D:\xampp\htdocs\yii\framework\base\CModule.php(103): CModule->getComponent('bootstrap')
+#3 D:\xampp\htdocs\srp\protected\modules\Examens\views\examens\_form.php(83): CModule->__get('bootstrap')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('D:\xampp\htdocs...')
+#5 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#7 D:\xampp\htdocs\srp\protected\modules\Examens\views\examens\create.php(18): CController->renderPartial('_form', Array)
+#8 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('D:\xampp\htdocs...')
+#9 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#12 D:\xampp\htdocs\srp\protected\modules\Examens\controllers\ExamensController.php(79): CController->render('create', Array)
+#13 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): ExamensController->actionCreate()
+#14 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#21 D:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#23 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Examens/examens...')
+#24 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#25 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#26 {main}
+REQUEST_URI=/srp/index.php/Examens/examens/create
+HTTP_REFERER=http://localhost:85/srp/index.php/Examens/examens
+---
