@@ -51,7 +51,8 @@ return array(
                 'cssFile'=>'rights.css',
                 'debug'=>false,
                 ),
-           'paiement',  
+           'paiement', 
+            'enseignant',
             'Examens'=>array(
 
                 ),

@@ -37,6 +37,11 @@
                                       array('label'=>'Cours','url'=>array('/cours/index'),'visible'=>!Yii::app()->user->isGuest), 
                                      ),),
                                 array('label'=>'Connexion', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest), 
+                            array('label'=>'Enseignements', 'url'=>array('/enseignant'), 
+                                         'items'=>array( 
+                                          array('label'=>'Enseigner', 'url'=>array('/enseignant/enseigner')), 
+                                         ),'visible'=>!Yii::app()->user->isGuest 
+                                       ),
 		                array('label'=>'Paiement', 'url'=>array('/paiement'), 
                                          'items'=>array( 
                                           array('label'=>'Type de paiement', 'url'=>array('/paiement/Typepaiements')), 

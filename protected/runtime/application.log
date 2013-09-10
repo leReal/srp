@@ -4228,3 +4228,53 @@ Stack trace:
 REQUEST_URI=/srp/index.php/Examens/examens/create
 HTTP_REFERER=http://localhost:85/srp/index.php/Examens/examens
 ---
+2013/09/10 13:12:26 [error] [exception.CException] exception 'CException' with message 'L'alias « bootstrap.components.Bootstrap » est invalide. Vérifiez qu'il pointe vers un fichier PHP existant.' in D:\xampp\htdocs\yii\framework\YiiBase.php:316
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(196): YiiBase::import('bootstrap.compo...', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 D:\xampp\htdocs\yii\framework\base\CModule.php(103): CModule->getComponent('bootstrap')
+#3 D:\xampp\htdocs\srp\protected\modules\Examens\views\evaluer\_form.php(13): CModule->__get('bootstrap')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('D:\xampp\htdocs...')
+#5 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#7 D:\xampp\htdocs\srp\protected\modules\Examens\views\evaluer\create.php(18): CController->renderPartial('_form', Array)
+#8 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('D:\xampp\htdocs...')
+#9 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#12 D:\xampp\htdocs\srp\protected\modules\Examens\controllers\EvaluerController.php(240): CController->render('create', Array)
+#13 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): EvaluerController->actionCreate()
+#14 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#21 D:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#23 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Examens/evaluer...')
+#24 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#25 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#26 {main}
+REQUEST_URI=/srp/index.php/Examens/evaluer/create
+HTTP_REFERER=http://localhost:85/srp/index.php/Examens/evaluer
+---
+2013/09/10 13:25:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Impossible de résoudre la requête « enseignant ».' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('enseignant')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/srp/index.php/enseignant
+HTTP_REFERER=http://localhost:85/srp/index.php
+---
+2013/09/10 13:25:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Impossible de résoudre la requête « enseignant/enseigner ».' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('enseignant/ense...')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/srp/index.php/enseignant/enseigner
+HTTP_REFERER=http://localhost:85/srp/index.php/enseignant
+---
