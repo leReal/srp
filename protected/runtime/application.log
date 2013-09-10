@@ -4278,3 +4278,56 @@ Stack trace:
 REQUEST_URI=/srp/index.php/enseignant/enseigner
 HTTP_REFERER=http://localhost:85/srp/index.php/enseignant
 ---
+2013/09/10 19:00:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Impossible de résoudre la requête « enseignant ».' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('enseignant')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/srp/index.php/enseignant
+HTTP_REFERER=http://localhost:85/srp/index.php
+---
+2013/09/10 19:02:52 [error] [php] max(): Array must contain at least one element (D:\xampp\htdocs\srp\protected\extensions\mbmenu\MbMenu.php:47)
+Stack trace:
+#0 D:\xampp\htdocs\srp\protected\extensions\mbmenu\MbMenu.php(97): MbMenu->cssLastItems()
+#1 D:\xampp\htdocs\yii\framework\web\CBaseController.php(147): MbMenu->init()
+#2 D:\xampp\htdocs\yii\framework\web\CBaseController.php(172): EnseignerController->createWidget()
+#3 D:\xampp\htdocs\srp\protected\views\layouts\main.php(76): EnseignerController->widget()
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#5 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): EnseignerController->renderInternal()
+#6 D:\xampp\htdocs\yii\framework\web\widgets\CContentDecorator.php(76): EnseignerController->renderFile()
+#7 D:\xampp\htdocs\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate()
+#8 D:\xampp\htdocs\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput()
+#9 D:\xampp\htdocs\yii\framework\web\CBaseController.php(206): CContentDecorator->run()
+#10 D:\xampp\htdocs\yii\framework\web\CBaseController.php(300): EnseignerController->endWidget()
+#11 D:\xampp\htdocs\srp\protected\views\layouts\column2.php(23): EnseignerController->endContent()
+#12 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#13 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): EnseignerController->renderInternal()
+#14 D:\xampp\htdocs\yii\framework\web\CController.php(784): EnseignerController->renderFile()
+#15 D:\xampp\htdocs\srp\protected\modules\enseignant\controllers\EnseignerController.php(128): EnseignerController->render()
+#16 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): EnseignerController->actionIndex()
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#18 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): EnseignerController->runAction()
+#19 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#20 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#21 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): EnseignerController->filterAccessControl()
+#22 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#23 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#24 D:\xampp\htdocs\yii\framework\web\CController.php(265): EnseignerController->runActionWithFilters()
+#25 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): EnseignerController->run()
+#26 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#27 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#28 D:\xampp\htdocs\srp\index.php(14): CWebApplication->run()
+REQUEST_URI=/srp/index.php/enseignant/enseigner
+in D:\xampp\htdocs\srp\protected\extensions\mbmenu\MbMenu.php (47)
+in D:\xampp\htdocs\srp\protected\extensions\mbmenu\MbMenu.php (59)
+in D:\xampp\htdocs\srp\protected\extensions\mbmenu\MbMenu.php (97)
+2013/09/10 19:05:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Impossible de résoudre la requête « enseignant ».' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('enseignant')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\srp\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/srp/index.php/enseignant
+HTTP_REFERER=http://localhost:85/srp/index.php/enseignant/enseigner
+---

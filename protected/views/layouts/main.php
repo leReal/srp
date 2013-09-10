@@ -30,18 +30,24 @@
 		<?php $this->widget('application.extensions.mbmenu.MbMenu',array(
 			'items'=>array(
                                	array('label'=>'Accueil', 'url'=>array('/site/index'),
-                                     'items'=>array(
+                                     ),
+                                array('label'=>'Connexion', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest), 
+                            array('label'=>'Scolarités', 'url'=>array('/enseignant'), 
+                                         'items'=>array( 
                                        array('label'=>'Elèves','url'=>array('/eleves/index'),'visible'=>!Yii::app()->user->isGuest),
                                        array('label'=>'Enseignants','url'=>array('/enseignants/index'),'visible'=>!Yii::app()->user->isGuest),
                                        array('label'=>'Classes','url'=>array('/classes/index'),'visible'=>!Yii::app()->user->isGuest), 
-                                      array('label'=>'Cours','url'=>array('/cours/index'),'visible'=>!Yii::app()->user->isGuest), 
-                                     ),),
-                                array('label'=>'Connexion', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest), 
-                            array('label'=>'Enseignements', 'url'=>array('/enseignant'), 
-                                         'items'=>array( 
-                                          array('label'=>'Enseigner', 'url'=>array('/enseignant/enseigner')), 
+                                       array('label'=>'Cours','url'=>array('/cours/index'),'visible'=>!Yii::app()->user->isGuest),    
+                                       array('label'=>'Enseignements', 'url'=>array('/enseignant/enseigner')), 
                                          ),'visible'=>!Yii::app()->user->isGuest 
                                        ),
+                             array('label'=>'Evaluations', 'url'=>array('/Examens'),
+                                'items'=>array(
+                                 array('label'=>'Gestion des Examens', 'url'=>array('/Examens/examens')), 
+                                 array('label'=>'Gestion des notes des élèves', 'url'=>array('/Examens/evaluer')), 
+                                    ),'visible'=>!Yii::app()->user->isGuest
+                                ),
+                           
 		                array('label'=>'Paiement', 'url'=>array('/paiement'), 
                                          'items'=>array( 
                                           array('label'=>'Type de paiement', 'url'=>array('/paiement/Typepaiements')), 
@@ -49,13 +55,7 @@
                                           array('label'=>'Frais de Pension', 'url'=>array('/paiement/Payement')),  
                                            ),'visible'=>!Yii::app()->user->isGuest 
                                        ),
-                            array('label'=>'Evaluation', 'url'=>array('/Examens'),
-                                'items'=>array(
-                                 array('label'=>'Gestion des Examens', 'url'=>array('/Examens/examens')), 
-                                 array('label'=>'Gestion des notes des élèves', 'url'=>array('/Examens/evaluer')), 
-                                    ),'visible'=>!Yii::app()->user->isGuest
-                                ),
-                            
+                           
                         array('label'=>'Administration', 'url'=>array('/site/administration'),
                                        'items'=>array(
                                     array('label'=>'Années Académiques','url'=>array('/anneeacademiques/index')), 
