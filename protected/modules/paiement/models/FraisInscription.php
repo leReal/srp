@@ -23,12 +23,12 @@
  * @property Accesoires $aCCESOIRE
  * @property Etablissements $eTABLISSEMENT
  */
-class Payement extends CActiveRecord
+class FraisInscription extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Payement the static model class
+	 * @return FraisInscription the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -51,14 +51,14 @@ class Payement extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ANNEEACADEMIQUE_ID, ELEVE_ID, TYPE_PAIEMENT_ID, ESEIGNANT_ID, ACCESOIRE_ID, ETABLISSEMENT_ID', 'numerical', 'integerOnly'=>true),
-			array('ANNEEACADEMIQUE_ID, ELEVE_ID, TYPE_PAIEMENT_ID, ETABLISSEMENT_ID,MONTANT', 'required'),
+			array('ANNEEACADEMIQUE_ID, ELEVE_ID, TYPE_PAIEMENT_ID, ETABLISSEMENT_ID', 'numerical', 'integerOnly'=>true),
+			array('ANNEEACADEMIQUE_ID, ELEVE_ID, ETABLISSEMENT_ID,MONTANT', 'required'),
                         array('MONTANT', 'length', 'max'=>10),
 			array('payement_id', 'length', 'max'=>255),
 			array('DATE', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('ANNEEACADEMIQUE_ID, ELEVE_ID, CLASSE_ID, TYPE_PAIEMENT_ID, ESEIGNANT_ID, ACCESOIRE_ID, ETABLISSEMENT_ID, DATE, MONTANT, payement_id', 'safe', 'on'=>'search'),
+			array('ANNEEACADEMIQUE_ID, ELEVE_ID,CLASSE_ID, TYPE_PAIEMENT_ID, ETABLISSEMENT_ID, DATE, MONTANT, payement_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -89,9 +89,9 @@ class Payement extends CActiveRecord
 			'ANNEEACADEMIQUE_ID' => 'Année académique',
 			'ELEVE_ID' => 'Eleve',
                         'CLASSE_ID'=>'Classe',
-			'TYPE_PAIEMENT_ID' => 'Type de paiement',
+			'TYPE_PAIEMENT_ID' => 'Type Paiement',
 			'ESEIGNANT_ID' => 'Enseignant',
-			'ACCESOIRE_ID' => 'Accessoire',
+			'ACCESOIRE_ID' => 'Accesoire',
 			'ETABLISSEMENT_ID' => 'Etablissement',
 			'DATE' => 'Date',
 			'MONTANT' => 'Montant',
@@ -113,10 +113,8 @@ class Payement extends CActiveRecord
 		$criteria->compare('ANNEEACADEMIQUE_ID',$this->ANNEEACADEMIQUE_ID);
 		$criteria->compare('ELEVE_ID',$this->ELEVE_ID);
                 $criteria->compare('CLASSE_ID',$this->CLASSE_ID);
-                // On ne recherche que les paiements de type pension. le paiement de type pension a pour code 1
-		$criteria->compare('TYPE_PAIEMENT_ID',1);
-		$criteria->compare('ESEIGNANT_ID',$this->ESEIGNANT_ID);
-		$criteria->compare('ACCESOIRE_ID',$this->ACCESOIRE_ID);
+                // On ne recherche que les paiements de type inscription. le paiement de type inscription a pour code 2
+		$criteria->compare('TYPE_PAIEMENT_ID',2);
 		$criteria->compare('ETABLISSEMENT_ID',$this->ETABLISSEMENT_ID);
 		$criteria->compare('DATE',$this->DATE,true);
 		$criteria->compare('MONTANT',$this->MONTANT,true);
@@ -126,7 +124,8 @@ class Payement extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-        
+
+
         /**
 	 * Inserts a row into the table based on this active record attributes.
 	 * If the table's primary key is auto-incremental and is null before insertion,
@@ -148,7 +147,7 @@ class Payement extends CActiveRecord
 			Yii::trace(get_class($this).'.insert()','system.db.ar.CActiveRecord');
 			$builder=$this->getCommandBuilder();
 			$table=$this->getMetaData()->tableSchema;
-                        //Avant de réaliser le paiement de la pension d'un élève, s'assurer que 
+                        //Avant de réaliser le paiement l'inscription d'un élève, s'assurer que 
                         //l'élève est déjà inscrit. Pour cela nous allons rechercher une inscription
                         //pour l'élève donné
                         $eleve=$this->eLEVE->ELEVE_ID;
@@ -156,11 +155,13 @@ class Payement extends CActiveRecord
                         if($exist==NULL)
                             throw new CDbException(Yii::t('yii',"L'élève n'est pas encore inscrit. Impossible d'effectuer le paiement!!! ".$exist));
                         //mise à jour de la date de paiement et de l'identifiant avant enregistrement
-                        $this->CLASSE_ID=$exist->CLASSE_ID;
                         $today = date('Y-m-d');
-                        $this->TYPE_PAIEMENT_ID=1;
                         $this->DATE=$today;
-                        $this->payement_id=((string)$this->ANNEEACADEMIQUE_ID)."#".((string)$this->TYPE_PAIEMENT_ID)."#".((string)$this->ETABLISSEMENT_ID)."#".(gmdate("Y-m-d\TH:i:s",time()));
+                        //mise à jour du type de paiement à type de paiement=inscription
+                        $this->CLASSE_ID=$exist->CLASSE_ID;
+                        $this->TYPE_PAIEMENT_ID=2;
+                        //$this->payement_id=((string)$this->ANNEEACADEMIQUE_ID)."#".((string)$this->ELEVE_ID)."#".((string)$this->ETABLISSEMENT_ID);
+                        $this->payement_id=((string)$this->ANNEEACADEMIQUE_ID)."#".((string)$this->ELEVE_ID)."#".((string)$this->ETABLISSEMENT_ID);
                         //Recherchons si un enregistrement pareil existe déjà pour eviter les doublons
                         $existDeja=  Payement::model()->findByPk($this->payement_id);
                         if($existDeja!=null){
@@ -195,40 +196,5 @@ class Payement extends CActiveRecord
 			}
 		}
 		return false;
-	}  
-        
-        /**
-	 * Updates the row represented by this active record.
-	 * All loaded attributes will be saved to the database.
-	 * Note, validation is not performed in this method. You may call {@link validate} to perform the validation.
-	 * @param array $attributes list of attributes that need to be saved. Defaults to null,
-	 * meaning all attributes that are loaded from DB will be saved.
-	 * @return boolean whether the update is successful
-	 * @throws CDbException if the record is new
-	 */
-	public function update($attributes=null)
-	{
-		if($this->getIsNewRecord())
-			throw new CDbException(Yii::t('yii','The active record cannot be updated because it is new.'));
-		if($this->beforeSave())
-		{
-			Yii::trace(get_class($this).'.update()','system.db.ar.CActiveRecord');
-			if($this->payement_id===null)
-				$this->payement_id=$this->getPrimaryKey();
-                        // on met à jour tous les champs même la clé puisque la clé est une concatenation d'un certain
-                        //des champs de l'entité
-                        $oldPrimaryKey=$this->payement_id;
-                        //mise à jour de la nouvelle clé primaire
-                        $this->payement_id=((string)$this->ANNEEACADEMIQUE_ID)."#".((string)$this->TYPE_PAIEMENT_ID)."#".((string)$this->ETABLISSEMENT_ID);
-                        //mise à jour de l'entité en fonction de l'ancienne clé primaire
-                        $this->updateAll(array('payement_id'=>$this->payement_id,'ELEVE_ID'=>$this->eLEVE->ELEVE_ID,
-                                'TYPE_PAIEMENT_ID'=>$this->tYPEPAIEMENT->TYPE_PAIEMENT_ID,'ETABLISSEMENT_ID'=>$this->eTABLISSEMENT->ETABLISSEMENT_ID,
-                            'MONTANT'=>$this->MONTANT,'ANNEEACADEMIQUE_ID'=>$this->aNNEEACADEMIQUE->ANNEEACADEMIQUE_ID),'payement_id='.$oldPrimaryKey);
-			$this->payement_id=$this->getPrimaryKey();
-			$this->afterSave();
-			return true;
-		}
-		else
-			return false;
-	}
+	}         
 }

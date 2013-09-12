@@ -135,12 +135,12 @@ class Inscription extends CActiveRecord
                         //mise à jour de la date d'inscription et de l'identifiant avant enregistrement
                         $today = date('Y-m-d');
                         $this->DATE=$today;
-                        $this->inscription_id=((string)$this->ANNEEACADEMIQUE_ID)."#".((string)$this->ELEVE_ID)."#".((string)$this->CLASSE_ID)."#".((string)$this->ETABLISSEMENT_ID);
+                        $this->inscription_id=((string)$this->ANNEEACADEMIQUE_ID)."#".((string)$this->ELEVE_ID)."#".((string)$this->ETABLISSEMENT_ID);
                         //Recherchons si un enregistrement pareil existe déjà pour eviter les doublons
                         $existDeja= Inscription::model()->findByPk($this->inscription_id);
                         if($existDeja!=null){
                            // alors l'elève concerné est déjà inscrit, il faut alors informer l'utilisateur
-                           throw new CDbException(Yii::t('yii',"L'élève est déjà inscrit: Impossible de l'inscrire de nouveau!!!".$existDeja->inscription_id." et ".$this->inscription_id));
+                           throw new CDbException(Yii::t('yii',"L'élève est déjà inscrit: Impossible de l'inscrire de nouveau!!!"));
                         }
 			$command=$builder->createInsertCommand($table,$this->getAttributes($attributes));
 			if($command->execute())
