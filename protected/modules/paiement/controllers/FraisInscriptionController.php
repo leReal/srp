@@ -1,6 +1,6 @@
 <?php
 
-class PayementController extends Controller
+class FraisInscriptionController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,14 +62,14 @@ class PayementController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Payement;
+		$model=new FraisInscription;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Payement']))
+		if(isset($_POST['FraisInscription']))
 		{
-			$model->attributes=$_POST['Payement'];
+			$model->attributes=$_POST['FraisInscription'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->payement_id));
 		}
@@ -91,9 +91,9 @@ class PayementController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Payement']))
+		if(isset($_POST['FraisInscription']))
 		{
-			$model->attributes=$_POST['Payement'];
+			$model->attributes=$_POST['FraisInscription'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->payement_id));
 		}
@@ -116,16 +116,16 @@ class PayementController extends Controller
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
-        
+
 	/**
 	 * Lists all models.
 	 */
 	public function actionIndex()
 	{
             //filtrons le dataProvider pour qu'il ne donne que les payements de type inscription
-            $dataProvider=new CActiveDataProvider('Payement', array(
+            $dataProvider=new CActiveDataProvider('FraisInscription', array(
                 'criteria'=>array(
-                'condition'=>'TYPE_PAIEMENT_ID=1',
+                'condition'=>'TYPE_PAIEMENT_ID=2',
              ),
                 'pagination'=>array(
                     'pageSize'=>20,
@@ -135,13 +135,56 @@ class PayementController extends Controller
 			'dataProvider'=>$dataProvider,
 		));
 	}
-        
-        /**
-	 * Prévisualise un reçu d'inscription d'un élève
-	 *
-	 * @param integer $id l'ID du paiement dont on veut faire la prévisualisation
+
+    /**
+     * Manages all models.
+     */
+    public function actionAdmin()
+    {
+            $model=new FraisInscription('search');
+            $model->unsetAttributes();  // clear any default values
+            if(isset($_GET['FraisInscription'])){
+                    $model->attributes=$_GET['FraisInscription'];
+            }
+
+            if (isset($_GET['export'])) {
+            $production = 'export';
+            } else {
+            $production = 'grid';
+            }
+
+            $this->render('admin', array('model' => $model, 'production' => $production));
+    }
+
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer $id the ID of the model to be loaded
+	 * @return FraisInscription the loaded model
+	 * @throws CHttpException
 	 */
-	public function actionJasper($id)
+	public function loadModel($id)
+	{
+		$model=FraisInscription::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	/**
+	 * Performs the AJAX validation.
+	 * @param FraisInscription $model the model to be validated
+	 */
+	protected function performAjaxValidation($model)
+	{
+		if(isset($_POST['ajax']) && $_POST['ajax']==='frais-inscription-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+	}
+        
+       public function actionJasper($id)
 	{
 		$model=$this->loadModel($id);
 
@@ -151,54 +194,5 @@ class PayementController extends Controller
 		$this->render('jasper',array(
 			'model'=>$model,true
 		));
-	}
-
-        /**
-	 * Manages all models.
-	 */
-	public function actionAdmin()
-	{
-		$model=new Payement('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Payement'])){
-			$model->attributes=$_GET['Payement'];
-                }
-                
-                if (isset($_GET['export'])) {
-                $production = 'export';
-                } else {
-                $production = 'grid';
-                }
-
-                $this->render('admin', array('model' => $model, 'production' => $production));
-	}
-
-
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return Payement the loaded model
-	 * @throws CHttpException
-	 */
-	public function loadModel($id)
-	{
-		$model=Payement::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
-	}
-
-	/**
-	 * Performs the AJAX validation.
-	 * @param Payement $model the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='payement-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
 	}
 }

@@ -128,21 +128,26 @@ class InscriptionController extends Controller
 		));
 	}
 
-	/**
-	 * Manages all models.
-	 */
-	public function actionAdmin()
-	{
-		$model=new Inscription('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Inscription']))
-			$model->attributes=$_GET['Inscription'];
+        /**
+        * Manages all models.
+        */
+       public function actionAdmin()
+       {
+               $model=new Inscription('search');
+               $model->unsetAttributes();  // clear any default values
+               if(isset($_GET['Inscription'])){
+                       $model->attributes=$_GET['Inscription'];
+               }
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
-	}
+               if (isset($_GET['export'])) {
+               $production = 'export';
+               } else {
+               $production = 'grid';
+               }
 
+               $this->render('admin', array('model' => $model, 'production' => $production));
+       }
+        
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

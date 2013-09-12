@@ -127,20 +127,25 @@ class TypepaiementsController extends Controller
 			'dataProvider'=>$dataProvider,
 		));
 	}
-
-	/**
+        
+        /**
 	 * Manages all models.
 	 */
 	public function actionAdmin()
 	{
 		$model=new Typepaiements('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Typepaiements']))
+		if(isset($_GET['Typepaiements'])){
 			$model->attributes=$_GET['Typepaiements'];
+                }
+                
+                if (isset($_GET['export'])) {
+                $production = 'export';
+                } else {
+                $production = 'grid';
+                }
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+                $this->render('admin', array('model' => $model, 'production' => $production));
 	}
 
 	/**
