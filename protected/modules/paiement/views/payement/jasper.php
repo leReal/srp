@@ -7,7 +7,7 @@ include_once('class/tcpdf/tcpdf.php');
 include_once("class/PHPJasperXML.inc.php");
 include_once ('setting.php');
 
-$xml =  simplexml_load_file("D:/xampp/htdocs/srp/protected/modules/paiement/views/payement/pension.jrxml");
+$xml =  simplexml_load_file("D:/Program Files/EasyPHP/www/srp/trunk/protected/modules/paiement/views/payement/pension.jrxml");
 
 $PHPJasperXML = new PHPJasperXML();
 //$PHPJasperXML->debugsql=true;

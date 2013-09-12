@@ -30,13 +30,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'TYPE_PAIEMENT_ID'); ?>
-		<?php echo $form->dropDownList($model,'TYPE_PAIEMENT_ID',CHtml::listData(Typepaiements::model()->findAll(),'TYPE_PAIEMENT_ID', 'NOM'),
-                        array('empty' => "Sélectionnez le type de paiement dans la liste")); ?>
-		<?php echo $form->error($model,'TYPE_PAIEMENT_ID'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'ETABLISSEMENT_ID'); ?>
 		<?php echo $form->dropDownList($model,'ETABLISSEMENT_ID',CHtml::listData(Etablissements::model()->findAll(),'ETABLISSEMENT_ID', 'NOM'),
                         array('empty' => "Sélectionnez l'établissement dans la liste")); ?>

@@ -27,6 +27,12 @@
 		<?php echo $form->dropDownList($model,'ELEVE_ID',CHtml::listData(Eleves::model()->findAll(),'ELEVE_ID', 'NOM'),
                         array('empty' => "Sélectionnez l'élève dans la liste")); ?>
 	</div>
+    
+        <div class="row">
+		<?php echo $form->label($model,'CLASSE_ID'); ?>
+		<?php echo $form->dropDownList($model,'CLASSE_ID',CHtml::listData(Classes::model()->findAll(),'CLASSE_ID', 'NOM'),
+                        array('empty' => "Sélectionnez la classe dans la liste")); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'TYPE_PAIEMENT_ID'); ?>
@@ -47,6 +53,7 @@
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Rechercher'); ?>
+                <?php echo CHtml::button('Exporter vers Excel (xls)', array('id' => 'exportToExcel')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
