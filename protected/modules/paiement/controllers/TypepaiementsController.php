@@ -110,6 +110,8 @@ class TypepaiementsController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+            // on ne supprime pas les types de paiements pension et inscription
+            if(($id!=1)&&($id!=2))
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
