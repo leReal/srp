@@ -53,7 +53,6 @@
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Rechercher'); ?>
-                <?php echo CHtml::button('Exporter vers Excel (xls)', array('id' => 'exportToExcel')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

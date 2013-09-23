@@ -30,7 +30,7 @@ return false;
 
 <?php echo CHtml::link('Recherche avancée','#',array('class'=>'search-button')); ?>
 
-<div class="search-form" style="display:block">
+<div class="search-form" style="display:none">
 <?php $this->renderPartial('_search', array('model' => $model)); ?>
 </div><!-- search-form -->
 
@@ -93,3 +93,5 @@ return false;
     'zoomScale'            => 75, // Default: 100
     'columns'              => $grid // an array of your CGridColumns  
 )); ?>
+
+<?php echo CHtml::button('Exporter vers Excel (xls)', array('id' => 'exportToExcel')); ?>

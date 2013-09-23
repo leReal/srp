@@ -52,7 +52,7 @@ class Payement extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('ANNEEACADEMIQUE_ID, ELEVE_ID, TYPE_PAIEMENT_ID, ESEIGNANT_ID, ACCESOIRE_ID, ETABLISSEMENT_ID', 'numerical', 'integerOnly'=>true),
-			array('ANNEEACADEMIQUE_ID, ELEVE_ID, TYPE_PAIEMENT_ID, ETABLISSEMENT_ID,MONTANT', 'required'),
+			array('ANNEEACADEMIQUE_ID, ELEVE_ID, ETABLISSEMENT_ID,MONTANT', 'required'),
                         array('MONTANT', 'length', 'max'=>10),
 			array('payement_id', 'length', 'max'=>255),
 			array('DATE', 'safe'),
