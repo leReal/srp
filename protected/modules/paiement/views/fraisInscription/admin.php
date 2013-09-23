@@ -12,8 +12,11 @@ $this->menu=array(
 	array('label'=>"Créer un paiement de frais d'inscription", 'url'=>array('create')),
 );
 
-Yii::app()->clientScript->registerScript('search', "
-$('#exportToExcel').click(function(){
+Yii::app()->clientScript->registerScript('search', "$('.search-button').click(function(){
+	$('.search-form').toggle();
+	return false;
+});
+    $('#exportToExcel').click(function(){
 window.location = '". $this->createUrl('admin') . "?' + $(this).parents('form').serialize() + '&export=true';
 return false;
 });
@@ -26,10 +29,9 @@ data: $(this).serialize()
 return false;
 });
 "); ?>
-<h1>Gérer les frais d'inscription</h1>
+<h1>Gestion des frais d'inscription</h1>
 
 <?php echo CHtml::link('Recherche avancée','#',array('class'=>'search-button')); ?>
-
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search', array('model' => $model)); ?>
 </div><!-- search-form -->

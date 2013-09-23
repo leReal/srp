@@ -12,7 +12,10 @@ $this->menu=array(
 	array('label'=>'Créer un type de paiement', 'url'=>array('create')),
 );
 
-Yii::app()->clientScript->registerScript('search', "
+Yii::app()->clientScript->registerScript('search', "$('.search-button').click(function(){
+	$('.search-form').toggle();
+	return false;
+});
 $('#exportToExcel').click(function(){
 window.location = '". $this->createUrl('admin') . "?' + $(this).parents('form').serialize() + '&export=true';
 return false;
